@@ -1,6 +1,6 @@
 import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_WHATSAPP, CONTACT_ADDRESS } from '@/lib/constants';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin, AlertTriangle } from 'lucide-react';
 import Link from 'next/link';
 import ContactForm from '@/components/ContactForm';
 
@@ -21,6 +21,35 @@ const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
       <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
     </svg>
   );
+
+const MapEmbed = () => {
+  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+  const encodedAddress = encodeURIComponent(CONTACT_ADDRESS);
+  const mapSrc = `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${encodedAddress}`;
+
+  if (!apiKey) {
+    return (
+      <div className="flex flex-col items-center justify-center h-full rounded-lg bg-muted p-8 text-center">
+        <AlertTriangle className="h-10 w-10 text-muted-foreground mb-4" />
+        <p className="font-semibold text-lg">Map could not be loaded.</p>
+        <p className="text-muted-foreground text-sm max-w-sm">
+          Please provide a valid <code>NEXT_PUBLIC_GOOGLE_MAPS_API_KEY</code> in your environment file to display the map.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <iframe
+      width="100%"
+      height="100%"
+      style={{ border: 0 }}
+      src={mapSrc}
+      allowFullScreen
+      className="rounded-lg"
+    ></iframe>
+  );
+};
 
 export const metadata = {
   title: 'Contact Us - Malik Institute',
@@ -73,8 +102,8 @@ export default function ContactPage() {
                     </div>
                 </Link>
                 
-                <div className="flex items-center gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-accent text-primary">
+                <div className="flex items-start gap-4">
+                    <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-accent text-primary">
                         <MapPin className="h-6 w-6" />
                     </div>
                     <div>
@@ -93,6 +122,17 @@ export default function ContactPage() {
             <ContactForm />
           </CardContent>
         </Card>
+      </div>
+
+      <div className="mt-16">
+        <div className="text-center">
+          <h2 className="font-headline text-3xl font-bold tracking-tight sm:text-4xl">
+            Find Us Here
+          </h2>
+        </div>
+        <div className="mt-8 h-[450px] w-full">
+            <MapEmbed />
+        </div>
       </div>
     </div>
   );

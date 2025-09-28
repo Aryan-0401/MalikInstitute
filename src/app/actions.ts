@@ -5,10 +5,11 @@ import { z } from 'zod';
 const contactFormSchema = z.object({
   name: z.string(),
   email: z.string().email(),
+  phone: z.string().optional(),
   message: z.string(),
 });
 
-export async function submitContactForm(data: { name: string; email: string; message: string }) {
+export async function submitContactForm(data: { name: string; email: string; phone?:string, message: string }) {
   try {
     contactFormSchema.parse(data);
     

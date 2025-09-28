@@ -1,6 +1,6 @@
 import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_WHATSAPP, CONTACT_ADDRESS } from '@/lib/constants';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Mail, Phone, MapPin, AlertTriangle } from 'lucide-react';
+import { Mail, Phone, MapPin } from 'lucide-react';
 import Link from 'next/link';
 import ContactForm from '@/components/ContactForm';
 
@@ -23,21 +23,8 @@ const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
   );
 
 const MapEmbed = () => {
-  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
   const encodedAddress = encodeURIComponent(CONTACT_ADDRESS);
-  const mapSrc = `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${encodedAddress}`;
-
-  if (!apiKey) {
-    return (
-      <div className="flex flex-col items-center justify-center h-full rounded-lg bg-muted p-8 text-center">
-        <AlertTriangle className="h-10 w-10 text-muted-foreground mb-4" />
-        <p className="font-semibold text-lg">Map could not be loaded.</p>
-        <p className="text-muted-foreground text-sm max-w-sm">
-          Please provide a valid <code>NEXT_PUBLIC_GOOGLE_MAPS_API_KEY</code> in your environment file to display the map.
-        </p>
-      </div>
-    );
-  }
+  const mapSrc = `https://maps.google.com/maps?q=${encodedAddress}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
 
   return (
     <iframe

@@ -1,10 +1,18 @@
+'use client';
+
 import Link from 'next/link';
 import { Facebook, Linkedin, Mail, Phone, Twitter } from 'lucide-react';
 import Logo from './Logo';
 import { CONTACT_ADDRESS, CONTACT_EMAIL, CONTACT_PHONE, NAV_LINKS, SOCIAL_LINKS } from '@/lib/constants';
+import React from 'react';
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
+  const [currentYear, setCurrentYear] = React.useState(new Date().getFullYear());
+
+  React.useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+  }, []);
+
 
   return (
     <footer className="bg-secondary text-secondary-foreground">

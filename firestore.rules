@@ -1,0 +1,23 @@
+
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Only allow creating documents in the 'contact-submissions' collection.
+    // This allows users to submit the contact form.
+    // Reads, updates, and deletes are disallowed for security.
+    match /contact-submissions/{submissionId} {
+      allow read, update, delete: if false;
+      allow create: if request.resource.data.name is string &&
+                       request.resource.data.name.size() > 0 &&
+                       request.resource.data.name.size() < 100 &&
+                       request.resource.data.email is string &&
+                       request.resource.data.email.size() > 5 &&
+                       request.resource.data.email.size() < 100 &&
+                       request.resource.data.message is string &&
+                       request.resource.data.message.size() > 0 &&
+                       request.resource.data.message.size() < 5000 &&
+                       (request.resource.data.phone == null || request.resource.data.phone is string);
+    }
+  }
+}

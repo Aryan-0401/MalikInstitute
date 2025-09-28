@@ -1,3 +1,10 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-image",
+      "description": "A modern computer lab with students working on computers.",
+      "imageUrl": "https://images.unsplash.com/photo-1617755870291-1f0de453ad30?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y29tcHV0ZXIlMjBjbGFzc3Jvb218ZW58MHx8fHwxNzU5MDM3MjYxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "computer classroom"
+    }
+  ]
 }

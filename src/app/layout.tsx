@@ -5,7 +5,6 @@ import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import FloatingWhatsAppButton from '@/components/layout/FloatingWhatsAppButton';
 
 const fontHeadline = Space_Grotesk({
   subsets: ['latin'],
@@ -41,7 +40,6 @@ export default function RootLayout({
           <main className="flex-grow">{children}</main>
           <Footer />
         </div>
-        <FloatingWhatsAppButton />
         <Toaster />
       </body>
     </html>

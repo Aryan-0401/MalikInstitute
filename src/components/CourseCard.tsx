@@ -24,7 +24,7 @@ export default function CourseCard({ course }: CourseCardProps) {
       </CardContent>
       <CardFooter>
         <Button asChild variant="outline" className="w-full">
-          <Link href="#">Learn More</Link>
+          <Link href={`/courses/${course.slug}`}>Learn More</Link>
         </Button>
       </CardFooter>
     </Card>

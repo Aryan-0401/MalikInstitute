@@ -1,6 +1,6 @@
-import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_WHATSAPP } from '@/lib/constants';
+import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_WHATSAPP, CONTACT_ADDRESS } from '@/lib/constants';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Mail, Phone } from 'lucide-react';
+import { Mail, Phone, MapPin } from 'lucide-react';
 import Link from 'next/link';
 import ContactForm from '@/components/ContactForm';
 
@@ -72,6 +72,16 @@ export default function ContactPage() {
                         <p className="text-muted-foreground group-hover:text-primary">Chat with us</p>
                     </div>
                 </Link>
+                
+                <div className="flex items-center gap-4">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-accent text-primary">
+                        <MapPin className="h-6 w-6" />
+                    </div>
+                    <div>
+                        <p className="font-semibold">Address</p>
+                        <p className="text-muted-foreground">{CONTACT_ADDRESS}</p>
+                    </div>
+                </div>
             </div>
         </div>
 
